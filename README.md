@@ -1,2 +1,1 @@
-# pokemon-battle
-Pokemon Battle application
+Pokkemon battle application
