@@ -23,6 +23,6 @@ export class Pokemon {
   @Column({ nullable: true })
   imageUrl: string | null;
 
-  @Column({ nullable: true })
-  type: string | null;
+  @Column({ default: 'type' })
+  type: string;
 }
