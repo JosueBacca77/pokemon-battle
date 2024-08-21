@@ -19,4 +19,10 @@ export class Pokemon {
 
   @Column()
   speed: number;
+
+  @Column({ nullable: true })
+  imageUrl: string | null;
+
+  @Column({ nullable: true })
+  type: string | null;
 }

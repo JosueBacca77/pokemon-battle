@@ -4,6 +4,7 @@ import { Repository } from 'typeorm';
 import { CreatePokemonDto } from './dto/create-pokemon.dto';
 import { UpdatePokemonDto } from './dto/update-pokemon.dto';
 import { Pokemon } from './entities/pokemon.entity';
+import { pokemon as pokemonData } from '../../data/pokemon.json';
 
 @Injectable()
 export class PokemonService {
@@ -32,5 +33,27 @@ export class PokemonService {
 
   async remove(id: number): Promise<void> {
     await this.pokemonRepository.delete(id);
+  }
+
+  async clearDatabase() {
+    await this.pokemonRepository.clear();  // Elimina todos los registros de la tabla Pokémon
+    console.log('Base de datos limpiada');
+  }
+
+  // Función para importar datos desde el JSON
+  async importPokemonData() {
+    // Mapear los datos del JSON ignorando el campo 'id'
+    const pokemons = pokemonData.map(data => {
+      const pokemon = new Pokemon();
+      pokemon.name = data.name;
+      pokemon.attack = data.attack;
+      pokemon.defense = data.defense;
+      pokemon.speed = data.speed;
+      pokemon.hp = data.hp;
+      return pokemon;
+    });
+
+    await this.pokemonRepository.save(pokemons);
+    console.log('Datos importados correctamente');
   }
 }
