@@ -1,0 +1,25 @@
+.pokemonImage{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.pokemonCard{
+    padding: 0.5rem;
+    width: 140px;
+    height: 140px;
+    transition: transform 0.2s ease-in-out;
+    margin: 0.5rem;
+
+    /* transform-origin: center; */
+}
+
+.pokemonCard:hover{
+    cursor: pointer;
+    width: 180px;
+    width: 180px;
+    position: relative;
+    transform: scale(1.1);
+    margin: 0.25rem; /* Ajusta el margen cuando se escala para mantener el tamaño total similar */
+
+}
