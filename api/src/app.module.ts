@@ -4,6 +4,7 @@ import { PokemonModule } from './pokemon/pokemon.module'; // Importa el módulo 
 import { ConfigModule } from '@nestjs/config';
 import { DatabaseConfigService } from './configs/DatabaseConfiguration.service';
 import { DatabaseConfigModule } from './configs/DatabaseConfiguration.module';
+import { BattleModule } from './battle/battle.module';
 
 @Module({
   imports: [
@@ -20,6 +21,7 @@ import { DatabaseConfigModule } from './configs/DatabaseConfiguration.module';
     },
   }),
   PokemonModule,
+  BattleModule,
 ],
 providers: [DatabaseConfigService],
 })

@@ -2,6 +2,7 @@ import { Controller, Get, Post, Body, Patch, Param, Delete, HttpException, Put }
 import { PokemonService } from './pokemon.service';
 import { CreatePokemonDto } from './dto/create-pokemon.dto';
 import { UpdatePokemonDto } from './dto/update-pokemon.dto';
+import { PokemonResponse, PokemonsResponse } from './types/typs';
 
 @Controller('v1/pokemons')
 export class PokemonController {
@@ -11,21 +12,25 @@ export class PokemonController {
   async create(@Body() createPokemonDto: CreatePokemonDto) {
     const pokemon = await this.pokemonService.create(createPokemonDto);
 
-    return {
+    const response: PokemonResponse = {
       success: true,
       pokemon
     };
+
+    return response
   }
 
   @Get()
   async findAll() {
     const pokemons = await this.pokemonService.findAll();
 
-
-    return {
+    const response: PokemonsResponse = {
       success: true,
       pokemons
-    }
+    };
+
+    return response
+
   }
 
   @Get(':id')
@@ -36,10 +41,12 @@ export class PokemonController {
       throw new HttpException('Pokemon not found', 404);
     };
 
-    return {
+    const response: PokemonResponse = {
       success: true,
       pokemon
     };
+
+    return response
   }
 
   @Patch(':id')
@@ -50,10 +57,12 @@ export class PokemonController {
       throw new HttpException('Pokemon not found', 404);
     };
 
-    return {
+    const response: PokemonResponse = {
       success: true,
       pokemon
     };
+
+    return response
   }
 
   @Put(':id')
@@ -64,10 +73,12 @@ export class PokemonController {
       throw new HttpException('Pokemon not found', 404);
     };
 
-    return {
+    const response: PokemonResponse = {
       success: true,
       pokemon
     };
+
+    return response
   }
 
   @Delete(':id')
