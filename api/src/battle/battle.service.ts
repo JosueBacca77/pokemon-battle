@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Battle } from './entities/battle.entity';
@@ -33,41 +33,45 @@ export class BattleService {
     return null
   } 
 
+  private processFight(rounds: number, attackerIndex: number, Pokemons: Pokemon[]){
+    const defenderIndex = (attackerIndex + 1) % 2;
+    const winner = this.pokemonAttack(Pokemons[attackerIndex], Pokemons[defenderIndex])
+
+    if(attackerIndex === 0){
+        rounds++    
+    }
+
+    if(winner){
+        return {winner, rounds }
+    }
+
+    
+    return this.processFight(rounds, defenderIndex, Pokemons)
+}
+
   async fight(pokemon1Id: number, pokemon2Id: number): Promise<Battle> {
-    const pokemon1 = await this.pokemonRepository.findOneOrFail({ where: { id: pokemon1Id } });
-    const pokemon2 = await this.pokemonRepository.findOneOrFail({ where: { id: pokemon2Id } });
+    const pokemon1 = await this.pokemonRepository.findOneBy({ id: pokemon1Id });
+    const pokemon2 = await this.pokemonRepository.findOneBy({ id: pokemon2Id });
 
     if(!pokemon1) {
-      throw new Error(`Pokemon with id ${pokemon1Id} not found`);
+        throw new HttpException(`Pokemon with id ${pokemon1Id} not found`, 404);
     }
 
     if(!pokemon2) {
-        throw new Error(`Pokemon with id ${pokemon2Id} not found`);
+        throw new HttpException(`Pokemon with id ${pokemon2Id} not found`, 404);
     }
 
-    let rounds = 0;
-    let winner: Pokemon;
+    const pokemonFight1 = { ...pokemon1}
+    const pokemonFight2 = { ...pokemon2}
 
     const startTime = new Date();
 
-    const [first, second] = this.determineOrder(pokemon1, pokemon2);
+    const [first, second] = this.determineOrder(pokemonFight1, pokemonFight2);
 
-    while (true) {
-      rounds++;
-
-      winner = this.pokemonAttack(first, second)
-      if(winner){
-        break;
-      }
-
-      winner = this.pokemonAttack(second, first)
-      if(winner){
-        break;
-      }
-    }
+    const { winner, rounds } = this.processFight(0, 0, [first, second])
 
     const endTime = new Date();
-    const duration = endTime.getTime() - startTime.getTime(); // Almacenar la duración en milisegundos
+    const duration = endTime.getTime() - startTime.getTime();
 
     const battle = this.battleRepository.create({
       pokemon1,

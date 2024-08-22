@@ -1,5 +1,5 @@
 import { IsNotEmpty, IsNumber } from "class-validator";
-import { AreDifferent } from "../helpers/utils";
+import { AreDifferent } from "../helpers/decorators";
 
 export class StartBattleDto {
 
