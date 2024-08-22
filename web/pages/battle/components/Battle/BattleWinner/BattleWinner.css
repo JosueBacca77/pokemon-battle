@@ -1,0 +1,7 @@
+.BattleWinnerWrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    background-color: #cbe3e0;
+}

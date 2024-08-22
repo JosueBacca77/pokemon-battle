@@ -1,0 +1,36 @@
+.container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding: 1rem;
+}
+
+.pokemon-card {
+    flex: 1;
+    min-width: 250px; /* Ajusta según necesites */
+    max-width: 350px;
+    text-align: center;
+}
+
+.battle-button {
+    flex: 0 1 auto;
+    margin: 1rem 0;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .pokemon-card {
+        max-width: 100%;
+    }
+
+    .battle-button {
+        width: 100%; /* Ocupa todo el ancho disponible */
+        text-align: center;
+    }
+}

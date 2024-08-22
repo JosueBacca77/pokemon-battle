@@ -6,7 +6,7 @@ import './Battle.css'
 export default function Battle() {
   return (
     <div className="battleWrapper">
-      <Typography variant='h2' component="h2">
+      <Typography variant='h2' component="h2" fontWeight={500} textAlign={"left"}>
         Battle of Pokemon
       </Typography>
       <PokemonsList />
