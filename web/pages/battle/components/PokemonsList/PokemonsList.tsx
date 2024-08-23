@@ -11,14 +11,14 @@ const POKEMONS_LIST:Pokemon[] = [
 
 export default function PokemonsList(props:PokemonsListProps) {
 
-  const { handleSelectPokemon } = props;
+  const { pokemons, handleSelectPokemon } = props;
 
   return (
     <div className="pokemonsListWrapper">
         <Text variant="h5" fontWeight={400} value="Select your Pokemon" />
         <div className="pokemonsList">
           {
-            POKEMONS_LIST.map((pokemon) => 
+            pokemons.map((pokemon) => 
               <div onClick={() => handleSelectPokemon(pokemon)}>
                 <PokemonItem pokemon={pokemon}/>
               </div>
