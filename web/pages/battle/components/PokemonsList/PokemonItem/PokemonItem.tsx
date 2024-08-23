@@ -1,16 +1,18 @@
-import { Typography } from '@mui/material';
 import "./PokemonItem.css"
 import Card from '@/components/Card/Card';
 import Text from '@/components/Text/Text';
+import { PokemonItemProps } from './types';
 
-export default function PokemonItem() {
+export default function PokemonItem(props:PokemonItemProps) {
+
+  const { pokemon } = props;
+
   return (
-    // <Card 
-    //   classes={{"root": "pokemon-item-card"}}
-    // >
-    //     <img className='pokemonImage' src="https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/025.png" alt="Pikachu" />
-    //     {/* <Text value={'Pikachu'} variant='subtitle1' textAlign={"left"} /> */}
-    // </Card>
-    null
+    <Card 
+          cardMediaUrl={pokemon.imageUrl}
+          classes={{"root": "pokemon-item-card"}}
+        >
+      <Text value={pokemon.name} variant='subtitle1' fontWeight={500}  />
+    </Card>
   )
 }

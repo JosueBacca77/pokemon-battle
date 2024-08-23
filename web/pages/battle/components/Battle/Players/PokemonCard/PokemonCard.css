@@ -1,7 +1,7 @@
 .pokemon-card {
     flex: 1;
     width: 350px;
-    text-align: center;
+    padding: 0.75rem .75rem 1.75rem .75rem 
 }
 
 .pokemon-data {

@@ -13,7 +13,7 @@ const POKEMON_OPONENT: Pokemon= {
   "attack": 5,
   "defense": 3,
   "speed": 2,
-  "imageUrl": "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/025.png",
+  "imageUrl": "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/133.png",
   "type": "Land"
 }
 

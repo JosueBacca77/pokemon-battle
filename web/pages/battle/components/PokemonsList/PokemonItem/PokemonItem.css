@@ -5,9 +5,7 @@
 }
 
 .pokemon-item-card{
-    padding: 0 .5rem;
-    width: 170px;
-    /* height: 180px; */
-    /* height: 170px; */
-    background-color: pink;
+    padding: .25rem .5rem;
+    width: 160px;
+    height: auto;
 }

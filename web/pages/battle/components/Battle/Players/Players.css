@@ -3,7 +3,7 @@
     justify-content: space-around;
     align-items: center;
     flex-wrap: wrap;
-    gap: 1rem;
+    gap: 4rem;
     padding: 1rem;
 }
 
@@ -12,7 +12,6 @@
     margin: 1rem 0;
 }
 
-/* Responsivo */
 @media (max-width: 768px) {
     .container {
         flex-direction: column;
