@@ -1,4 +1,4 @@
-import { Pokemon } from "@/models/Pokemon";
+import { Pokemon } from "@/models/Pokemon.model";
 
 export async function selectRandomPokemon(pokemons: Pokemon[], delay: number): Promise<Pokemon> {
     return new Promise((resolve) => {

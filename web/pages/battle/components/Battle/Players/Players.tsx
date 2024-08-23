@@ -1,9 +1,9 @@
 import { PlayersProps } from "./types";
-import Button from "@/components/Button/Button";
+import { Button } from "@/components";
 import './Players.css'
 import PokemonCard from "./PokemonCard/PokemonCard";
 import { CircularProgress } from "@mui/material";
-import Text from "@/components/Text/Text";
+import { Text } from "@/components";
 
 export default function Players(props:PlayersProps) {
 

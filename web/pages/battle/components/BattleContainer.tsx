@@ -2,7 +2,7 @@
 import PokemonsList from './PokemonsList/PokemonsList';
 import './BattleContainer.css'
 import Battle from './Battle/Battle';
-import Text from '@/components/Text/Text';
+import { Text } from '@/components';
 import { useEffect, useState } from 'react';
 import useGetPokemons from '@/pages/pokemons/hooks/useGetPokemons';
 import { selectRandomPokemon } from '../utils/selectOponent';

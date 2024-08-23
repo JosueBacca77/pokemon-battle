@@ -1,4 +1,4 @@
-import Text from "@/components/Text/Text";
+import { Text } from "@/components";
 import './BattleWinner.css'
 import { BattleWinnerProps } from "./types";
 

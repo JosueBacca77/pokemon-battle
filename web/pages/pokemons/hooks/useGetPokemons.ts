@@ -1,4 +1,4 @@
-import { Pokemon } from "@/models/Pokemon";
+import { Pokemon } from "@/models/Pokemon.model";
 import { PokemonsService } from "@/Services/PokemonService/Pokemon.service";
 import { useRef, useState } from "react";
 

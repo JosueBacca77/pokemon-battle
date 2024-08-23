@@ -1,7 +1,6 @@
 import PokemonItem from "./PokemonItem/PokemonItem";
 import "./PokemonsList.css"
-import Text from "@/components/Text/Text";
-import { PokemonsListProps } from "./types";
+import { Text } from "@/components";import { PokemonsListProps } from "./types";
 
 export default function PokemonsList(props:PokemonsListProps) {
 
@@ -13,7 +12,7 @@ export default function PokemonsList(props:PokemonsListProps) {
         <div className="pokemons-list">
           {
             pokemons.map((pokemon) => 
-              <div className="pokemon-item" onClick={() => handleSelectPokemon(pokemon)}>
+              <div key={pokemon.id} className="pokemon-item" onClick={() => handleSelectPokemon(pokemon)}>
                 <PokemonItem pokemon={pokemon}/>
               </div>
             )

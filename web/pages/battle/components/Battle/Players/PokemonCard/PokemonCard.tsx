@@ -1,8 +1,8 @@
-import Card from "@/components/Card/Card";
+import { Card } from "@/components";
 import { PokemonCardProps } from "./types";
 import "./PokemonCard.css"
-import Text from "@/components/Text/Text";
-import BorderLinearProgress from "@/components/BorderLinearProgress/BorderLinearProgress";
+import { Text } from "@/components";
+import { BorderLinearProgress } from "@/components";
 import { StatsLabels } from "@/constants/Stats";
 import { PokemonStat } from "@/models/Pokemon.model";
 
@@ -22,7 +22,7 @@ export default function PokemonCard(props: PokemonCardProps) {
             
                 {
                     stats.map((stat) => 
-                        <div className="pokemon-stat-wrapper">
+                        <div key={stat} className="pokemon-stat-wrapper">
                             <Text value={StatsLabels[stat]} variant='caption' fontWeight={200} />
                             <div className="linear-progress-wrapper">
                                 <BorderLinearProgress value={pokemon[stat]*10}/>
