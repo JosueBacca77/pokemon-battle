@@ -26,7 +26,7 @@ async function bootstrap() {
 
   // Enable Cross-Origin Resource Sharing (CORS)
   app.enableCors({
-    origin: 'http://localhost:3000', // Reemplaza con el origen permitido
+    origin: '*', // Reemplaza con el origen permitido
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
     credentials: true, // Si necesitas enviar cookies o autenticación
     allowedHeaders: 'Content-Type, Authorization', // Especifica qué cabeceras permites
