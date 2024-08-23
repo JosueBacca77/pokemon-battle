@@ -1,3 +1,3 @@
 export type BattleWinnerProps = {
-    winnerName: string
+    winnerName: string | null
 }

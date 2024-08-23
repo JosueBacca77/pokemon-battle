@@ -17,6 +17,7 @@ export default function BattleContainer() {
   const getPokemons = useGetPokemons();
 
   const handleSelectPokemon = (pokemon: Pokemon) => {
+    if(pokemonSelected?.id === pokemon.id) return;
     setPokemonSelected(pokemon);
     setPokemonOponent(null);
   }
@@ -42,7 +43,7 @@ export default function BattleContainer() {
   }, [pokemonSelected]);
 
   return (
-    <div className="battle-wrapper">
+    <div className="battle-container-wrapper">
       {
         getPokemons.data && 
         <>

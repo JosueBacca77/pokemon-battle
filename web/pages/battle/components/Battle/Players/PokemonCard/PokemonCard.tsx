@@ -2,9 +2,9 @@ import Card from "@/components/Card/Card";
 import { PokemonCardProps } from "./types";
 import "./PokemonCard.css"
 import Text from "@/components/Text/Text";
-import { PokemonStat } from "@/models/Pokemon";
 import BorderLinearProgress from "@/components/BorderLinearProgress/BorderLinearProgress";
 import { StatsLabels } from "@/constants/Stats";
+import { PokemonStat } from "@/models/Pokemon.model";
 
 export default function PokemonCard(props: PokemonCardProps) {
 
@@ -13,7 +13,6 @@ export default function PokemonCard(props: PokemonCardProps) {
     const stats: PokemonStat[] = ['hp', 'attack', 'defense', 'speed']
 
   return (
-    <div className="pokemon-card">
         <Card 
             cardMediaUrl={pokemon.imageUrl}
             classes={{"root": "pokemon-card"}}
@@ -33,6 +32,5 @@ export default function PokemonCard(props: PokemonCardProps) {
                 }
             </div>
         </Card>
-    </div>
   )
 }

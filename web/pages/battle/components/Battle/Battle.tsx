@@ -28,14 +28,21 @@ export default function Battle(props:BattleProps) {
   
     setWinner(battle.data?.winner)
   }, [battle.success])
-  
 
+  useEffect(() => {
+    setWinner(null)
+  }, [pokemonSelected])
+  
   return (
-    <div className="BattleWrapper">
-      {
-        winner && <BattleWinner winnerName={winner.name} />
-      }
-      <Players isSelectingOponent={isSelectingOponent} pokemonSelected={pokemonSelected} pokemonOponent={pokemonOponent} handleBattle={handleBattle} />
+    <div className="battle-wrapper">
+      <BattleWinner winnerName={winner?.name ?? null} />
+      <Players 
+        isSelectingOponent={isSelectingOponent} 
+        pokemonSelected={pokemonSelected} 
+        pokemonOponent={pokemonOponent}
+        fighting={battle.isLoading} 
+        handleBattle={handleBattle} 
+      />
     </div>
   )
 }

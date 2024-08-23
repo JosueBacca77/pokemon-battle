@@ -7,13 +7,10 @@ export class Battle {
   id: number;
 
   @ManyToOne(() => Pokemon, { eager: true })
-  pokemon1: Pokemon;
+  winner: Pokemon;
 
   @ManyToOne(() => Pokemon, { eager: true })
-  pokemon2: Pokemon;
-
-  @Column()
-  winnerId: number;
+  looser: Pokemon;
 
   @CreateDateColumn()
   startTime: Date;

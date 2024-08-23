@@ -2,26 +2,45 @@ import { PlayersProps } from "./types";
 import Button from "@/components/Button/Button";
 import './Players.css'
 import PokemonCard from "./PokemonCard/PokemonCard";
-// import { usePokemonsContext } from "@/context/PokemonsContext/usePokemonsContext";
+import { CircularProgress } from "@mui/material";
+import Text from "@/components/Text/Text";
 
 export default function Players(props:PlayersProps) {
 
-    const { pokemonSelected, pokemonOponent, isSelectingOponent, handleBattle } = props;
-
-    // const { pokemons, setPokemons } = usePokemonsContext();
+  const { pokemonSelected, pokemonOponent, isSelectingOponent, fighting, handleBattle } = props;
 
   return (
     <div className="players-wrapper-container">
+      <div className="players-item">
         <PokemonCard pokemon={pokemonSelected} />
+      </div>
+
+      <div className="button-item">
+        {
+          (!isSelectingOponent && !fighting) && <Button sx={{padding: '14px', width: "12rem", height: "3rem"}} text={'Start Battle'} color="success" variant="contained" onClick={handleBattle}/>
+        }
+        {
+          (isSelectingOponent && !fighting) && 
+            <Text 
+                value="Selecting oponent..."
+                fontSize={24}
+                fontWeight={300}
+                color="#d4dad9"
+                variant="body1"
+            />
+        }
+        {
+          (!isSelectingOponent && fighting) && 
+            <CircularProgress />
+        }
+      </div>
         
-        <Button text={'Start Battle'} color="success" variant="contained" onClick={handleBattle}/>
+      <div className="players-item">
         {
             !isSelectingOponent && pokemonOponent &&
             <PokemonCard pokemon={pokemonOponent} />
         } 
-        {
-          isSelectingOponent && <div className="loading-pokemons">Loading pokemons...</div>
-        }
+      </div>
     </div>
   )
 }

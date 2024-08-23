@@ -3,10 +3,10 @@ import { ButtonProps } from "./types";
 
 export default function Button(props:ButtonProps) {
 
-    const { text, variant, color, onClick } = props;
+    const { text, variant, color, sx, onClick } = props;
 
   return (
-    <MUIButton variant={variant} color={color} onClick={onClick}>
+    <MUIButton sx={sx} variant={variant} color={color} onClick={onClick}>
       {text}
     </MUIButton>
   )

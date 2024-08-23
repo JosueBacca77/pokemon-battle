@@ -3,6 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Battle } from './entities/battle.entity';
 import { Pokemon } from 'src/pokemon/entities/pokemon.entity';
+import { StartBattleDto } from './dto/start-battle.dto';
 
 @Injectable()
 export class BattleService {
@@ -49,7 +50,10 @@ export class BattleService {
     return this.processFight(rounds, defenderIndex, Pokemons)
 }
 
-  async fight(pokemon1Id: number, pokemon2Id: number): Promise<Battle> {
+  async fight(battleBody: StartBattleDto): Promise<Battle> {
+
+    const { pokemon1Id, pokemon2Id } = battleBody;
+
     const pokemon1 = await this.pokemonRepository.findOneBy({ id: pokemon1Id });
     const pokemon2 = await this.pokemonRepository.findOneBy({ id: pokemon2Id });
 
@@ -74,9 +78,8 @@ export class BattleService {
     const duration = endTime.getTime() - startTime.getTime();
 
     const battle = this.battleRepository.create({
-      pokemon1,
-      pokemon2,
-      winnerId: winner.id,
+      winner,
+      looser: pokemon1.id === winner.id ? pokemon2 : pokemon1,
       startTime,
       endTime,
       duration,
@@ -84,7 +87,9 @@ export class BattleService {
       winnerHp: winner.hp,
     });
 
-    return this.battleRepository.save(battle);
+    this.battleRepository.save(battle);
+
+    return battle;
   }
 
   async getAll(): Promise<Battle[]> {

@@ -35,6 +35,8 @@ export default function usePostBattle() {
                 }
             })
 
+            await new Promise(resolve => setTimeout(resolve, 4000));
+
             setData(data.battle);
             setSuccess(true)
         }catch(err:any){

@@ -8,8 +8,12 @@ export class BattleController {
   constructor(private readonly battleService: BattleService) {}
 
   @Post()
-  async startBattle(@Body() startBattle:StartBattleDto): Promise<Battle> {
-    return this.battleService.fight(startBattle.pokemon1Id, startBattle.pokemon2Id);
+  async startBattle(@Body() startBattle:StartBattleDto) {
+    const battle = await this.battleService.fight(startBattle);
+    return {
+      success: true,
+      battle
+    }
   }
 
   @Get()
