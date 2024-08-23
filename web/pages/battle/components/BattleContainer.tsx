@@ -1,12 +1,12 @@
 "use client"
 import PokemonsList from './PokemonsList/PokemonsList';
 import './BattleContainer.css'
-import { Pokemon } from '@/models/Pokemon';
 import Battle from './Battle/Battle';
 import Text from '@/components/Text/Text';
 import { useEffect, useState } from 'react';
 import useGetPokemons from '@/pages/pokemons/hooks/useGetPokemons';
 import { selectRandomPokemon } from '../utils/selectOponent';
+import { Pokemon } from '@/models/Pokemon.model';
 
 export default function BattleContainer() {
 
@@ -49,7 +49,7 @@ export default function BattleContainer() {
           <Text variant="h2" fontWeight={400} value='Battle of Pokemon' />
           <PokemonsList pokemons={getPokemons.data} handleSelectPokemon={handleSelectPokemon} />
           {
-            pokemonOponent && pokemonSelected && 
+            pokemonSelected && 
             <Battle isSelectingOponent={isSelectingOponent} pokemonSelected={pokemonSelected} pokemonOponent={pokemonOponent} />
           }
         </>

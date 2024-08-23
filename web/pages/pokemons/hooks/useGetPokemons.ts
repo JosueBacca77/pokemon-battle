@@ -1,5 +1,5 @@
 import { Pokemon } from "@/models/Pokemon";
-import { PokemonsService } from "@/Services/Pokemon.service";
+import { PokemonsService } from "@/Services/PokemonService/Pokemon.service";
 import { useRef, useState } from "react";
 
 export default function useGetPokemons() {

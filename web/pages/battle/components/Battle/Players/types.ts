@@ -1,7 +1,8 @@
-import { Pokemon } from "@/models/Pokemon"
+import { Pokemon } from "@/models/Pokemon.model";
 
 export type PlayersProps = {
     pokemonSelected: Pokemon;
-    pokemonOponent: Pokemon;
+    pokemonOponent: Pokemon | null;
     isSelectingOponent: boolean;
+    handleBattle: () => void;
 }
