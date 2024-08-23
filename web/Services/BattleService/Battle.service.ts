@@ -7,7 +7,7 @@ export class BattlesService {
   private repository: Repository;
 
   constructor() {
-    this.endpoint = 'http://localhost:3000/api/v1/battles/';
+    this.endpoint = 'http://localhost:3006/api/v1/battles/';
     this.repository = new Repository();
   }
 

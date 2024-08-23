@@ -7,7 +7,7 @@ export class PokemonsService {
   private repository: Repository;
 
   constructor() {
-    this.endpoint = 'http://localhost:3000/api/v1/pokemons/';
+    this.endpoint = 'http://localhost:3006/api/v1/pokemons/';
     this.repository = new Repository();
   }
 
