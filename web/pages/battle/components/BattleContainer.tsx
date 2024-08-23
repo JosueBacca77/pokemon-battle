@@ -6,41 +6,52 @@ import Battle from './Battle/Battle';
 import Text from '@/components/Text/Text';
 import { useEffect, useState } from 'react';
 import useGetPokemons from '@/pages/pokemons/hooks/useGetPokemons';
-
-const POKEMON_SELECTED: Pokemon= {
-  "id":3,
-  "name": "Pikachu",
-  "hp": 4,
-  "attack": 4,
-  "defense": 3,
-  "speed": 5,
-  "imageUrl": "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/025.png",
-  "type": "Land"
-}
+import { selectRandomPokemon } from '../utils/selectOponent';
 
 export default function BattleContainer() {
 
   const [pokemonSelected, setPokemonSelected] = useState<Pokemon | null>(null);
+  const [pokemonOponent, setPokemonOponent] = useState<Pokemon | null>(null);
+  const [isSelectingOponent, setIsSelectingOponent] = useState<boolean>(false);
 
   const getPokemons = useGetPokemons();
 
   const handleSelectPokemon = (pokemon: Pokemon) => {
-    setPokemonSelected(pokemon)
+    setPokemonSelected(pokemon);
+    setPokemonOponent(null);
   }
 
   useEffect(() => {
-    getPokemons.get()
-  }, [])
+    getPokemons.get();
+  }, []);
 
-  
+  const selectPokemon = async (pokemons: Pokemon[], selectedPokemonId: number) => {
+    setIsSelectingOponent(true);
+    let randomPokemon: Pokemon;
+    do {
+      randomPokemon = await selectRandomPokemon(pokemons, 3000);
+    } while (randomPokemon.id === selectedPokemonId);
+    setIsSelectingOponent(false);
+    setPokemonOponent(randomPokemon);
+  };
+
+  useEffect(() => {
+    if (!pokemonSelected || !getPokemons.data) return;
+
+    selectPokemon(getPokemons.data, pokemonSelected.id);
+  }, [pokemonSelected]);
+
   return (
     <div className="battle-wrapper">
       {
         getPokemons.data && 
         <>
           <Text variant="h2" fontWeight={400} value='Battle of Pokemon' />
-          <PokemonsList pokemons={getPokemons.data} handleSelectPokemon={handleSelectPokemon}/>
-          <Battle pokemonSelected={POKEMON_SELECTED} />
+          <PokemonsList pokemons={getPokemons.data} handleSelectPokemon={handleSelectPokemon} />
+          {
+            pokemonOponent && pokemonSelected && 
+            <Battle isSelectingOponent={isSelectingOponent} pokemonSelected={pokemonSelected} pokemonOponent={pokemonOponent} />
+          }
         </>
       }
     </div>

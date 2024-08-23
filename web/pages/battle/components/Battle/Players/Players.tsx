@@ -5,15 +5,17 @@ import PokemonCard from "./PokemonCard/PokemonCard";
 
 export default function Players(props:PlayersProps) {
 
-    const { pokemonSelected, pokemonOponent } = props;
+    const { pokemonSelected, pokemonOponent, isSelectingOponent } = props;
 
   return (
     <div className="players-wrapper-container">
         <PokemonCard pokemon={pokemonSelected} />
         
         <Button text={'Start Battle'} color="success" variant="contained"/>
-
-        <PokemonCard pokemon={pokemonOponent} />
+        {
+            !isSelectingOponent && pokemonOponent &&
+            <PokemonCard pokemon={pokemonOponent} />
+        } 
     </div>
   )
 }
