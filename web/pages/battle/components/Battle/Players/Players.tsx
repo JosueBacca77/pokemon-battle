@@ -1,21 +1,28 @@
 import Card from "@/components/Card/Card";
 import { PlayersProps } from "./types";
+import Button from "@/components/Button/Button";
+import './Players.css'
+import PokemonCard from "./PokemonCard/PokemonCard";
 
 export default function Players(props:PlayersProps) {
 
-    const { playerSelected } = props;
+    const { pokemonSelected } = props;
 
   return (
-    <div className="PlayersWrapper">
+    <div className="players-wrapper-container">
 
-        <Card>
-            <img src="https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/025.png" alt="Pikachu" />
-        </Card>
+        <PokemonCard pokemon={pokemonSelected} />
         
-        <Card>
-        <img src="https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/025.png" alt="Pikachu" />
+        
+        <Button text={'Start Battle'} />
 
-        </Card>
+        <div className="pokemon-card">
+            <Card
+                cardMediaUrl="https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/025.png"
+            >
+                <div>POKEMON DATA</div>
+            </Card>
+        </div>
 
     </div>
   )

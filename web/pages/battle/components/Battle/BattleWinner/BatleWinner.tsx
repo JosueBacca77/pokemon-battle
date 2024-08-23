@@ -1,6 +1,6 @@
 import Text from "@/components/Text/Text";
-import { BattleWinnerProps } from "../types";
-import './Battle.css'
+import './BattleWinner.css'
+import { BattleWinnerProps } from "./types";
 
 export default function BattleWinner(props:BattleWinnerProps) {
 

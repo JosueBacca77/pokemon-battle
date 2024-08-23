@@ -4,8 +4,10 @@
     object-fit: contain;
 }
 
-.pokemonCard{
-    padding: 0.5rem;
-    width: 140px;
-    height: 140px;
+.pokemon-item-card{
+    padding: 0 .5rem;
+    width: 170px;
+    /* height: 180px; */
+    /* height: 170px; */
+    background-color: pink;
 }

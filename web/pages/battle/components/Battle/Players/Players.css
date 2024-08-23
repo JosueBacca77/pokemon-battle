@@ -1,17 +1,10 @@
-.container {
+.players-wrapper-container {
     display: flex;
     justify-content: space-around;
     align-items: center;
     flex-wrap: wrap;
     gap: 1rem;
     padding: 1rem;
-}
-
-.pokemon-card {
-    flex: 1;
-    min-width: 250px; /* Ajusta según necesites */
-    max-width: 350px;
-    text-align: center;
 }
 
 .battle-button {

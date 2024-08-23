@@ -14,7 +14,7 @@ export default function Text(props:TextProps) {
         variant={variant}
         fontSize={fontSize}
         fontWeight={fontWeight}
-        textAlign={"left"}
+        textAlign={textAlign}
     >
         {value}
     </Typography>
