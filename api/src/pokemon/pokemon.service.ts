@@ -35,11 +35,6 @@ export class PokemonService {
     await this.pokemonRepository.delete(id);
   }
 
-  async clearDatabase() {
-    await this.pokemonRepository.clear();  // Elimina todos los registros de la tabla Pokémon
-    console.log('Base de datos limpiada');
-  }
-
   // Función para importar datos desde el JSON
   async importPokemonData() {
     // Mapear los datos del JSON ignorando el campo 'id'
