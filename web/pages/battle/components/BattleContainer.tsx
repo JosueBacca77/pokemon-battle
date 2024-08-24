@@ -3,13 +3,12 @@ import PokemonsList from './PokemonsList/PokemonsList';
 import './BattleContainer.css'
 import Battle from './Battle/Battle';
 import { Text } from '@/components';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import useGetPokemons from '@/pages/pokemons/hooks/useGetPokemons';
 import { selectRandomPokemon } from '../utils/selectOponent';
 import { Pokemon } from '@/models/Pokemon.model';
 
 export default function BattleContainer() {
-
   const [pokemonSelected, setPokemonSelected] = useState<Pokemon | null>(null);
   const [pokemonOponent, setPokemonOponent] = useState<Pokemon | null>(null);
   const [isSelectingOponent, setIsSelectingOponent] = useState<boolean>(false);
@@ -17,16 +16,16 @@ export default function BattleContainer() {
   const getPokemons = useGetPokemons();
 
   const handleSelectPokemon = (pokemon: Pokemon) => {
-    if(pokemonSelected?.id === pokemon.id) return;
+    if(pokemonSelected?.id === pokemon.id || isSelectingOponent) return;
     setPokemonSelected(pokemon);
     setPokemonOponent(null);
-  }
+  };
 
   useEffect(() => {
     getPokemons.get();
   }, []);
 
-  const selectPokemon = async (pokemons: Pokemon[], selectedPokemonId: number) => {
+  const selectPokemon = useMemo(() => async (pokemons: Pokemon[], selectedPokemonId: number) => {
     setIsSelectingOponent(true);
     let randomPokemon: Pokemon;
     do {
@@ -34,13 +33,13 @@ export default function BattleContainer() {
     } while (randomPokemon.id === selectedPokemonId);
     setIsSelectingOponent(false);
     setPokemonOponent(randomPokemon);
-  };
+  }, []);
 
   useEffect(() => {
     if (!pokemonSelected || !getPokemons.data) return;
 
     selectPokemon(getPokemons.data, pokemonSelected.id);
-  }, [pokemonSelected]);
+  }, [pokemonSelected, getPokemons.data, selectPokemon]);
 
   return (
     <div className="battle-container-wrapper">
