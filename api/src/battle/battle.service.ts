@@ -65,8 +65,9 @@ export class BattleService {
         throw new HttpException(`Pokemon with id ${pokemon2Id} not found`, 404);
     }
 
-    const pokemonFight1 = { ...pokemon1}
-    const pokemonFight2 = { ...pokemon2}
+    // Deep copy
+    const pokemonFight1 = JSON.parse(JSON.stringify(pokemon1));
+    const pokemonFight2 = JSON.parse(JSON.stringify(pokemon2));
 
     const startTime = new Date();
 
@@ -78,7 +79,7 @@ export class BattleService {
     const duration = endTime.getTime() - startTime.getTime();
 
     const battle = this.battleRepository.create({
-      winner,
+      winner: pokemon1.id === winner.id ? pokemon1 : pokemon2, //Return the original pokemons
       looser: pokemon1.id === winner.id ? pokemon2 : pokemon1,
       startTime,
       endTime,
